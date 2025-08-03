@@ -1,0 +1,182 @@
+robot_config:
+  name: test_robot
+  dof: 6
+  confidence: 1.0
+  sources:
+  - /workspace/project/test_repo/config.yaml
+  - /workspace/project/test_repo/robot.urdf
+  - /workspace/project/test_repo/robot.py
+  joints:
+  - name: shoulder_joint
+    type: revolute
+    limits:
+      lower: -3.14159
+      upper: 3.14159
+    source: /workspace/project/test_repo/config.yaml
+    confidence: 1.0
+  - name: elbow_joint
+    type: revolute
+    limits:
+      lower: -2.0
+      upper: 2.0
+    source: /workspace/project/test_repo/config.yaml
+    confidence: 1.0
+  - name: wrist_joint
+    type: revolute
+    limits:
+      lower: -1.5
+      upper: 1.5
+    source: /workspace/project/test_repo/config.yaml
+    confidence: 1.0
+  - name: finger1_joint
+    type: revolute
+    limits:
+      lower: -1.0
+      upper: 1.0
+    source: /workspace/project/test_repo/config.yaml
+    confidence: 1.0
+  - name: finger2_joint
+    type: revolute
+    limits:
+      lower: -0.5
+      upper: 0.5
+    source: /workspace/project/test_repo/config.yaml
+    confidence: 1.0
+  - name: thumb_joint
+    type: revolute
+    limits:
+      lower: -0.3
+      upper: 0.3
+    source: /workspace/project/test_repo/config.yaml
+    confidence: 1.0
+discovered_entry_points:
+- file: /workspace/project/test_repo/robot.py
+  score: 0.5
+  patterns:
+  - (?:Robot|Arm|Manipulator|Controller|Environment|Env)\s*\(
+  type: python
+named_positions:
+  home position:
+    values:
+    - 0.0
+    - -1.57
+    - 1.57
+    - 0.0
+    - 0.0
+    - 0.0
+    source: /workspace/project/test_repo/config.yaml
+    confidence: 0.7
+  pick position:
+    values:
+    - 0.5
+    - -1.0
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.0
+    source: /workspace/project/test_repo/robot.py
+    confidence: 0.7
+  place position:
+    values:
+    - -0.5
+    - -1.0
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.0
+    source: /workspace/project/test_repo/robot.py
+    confidence: 0.7
+tasks:
+  pick_and_place:
+    name: pick_and_place
+    source: /workspace/project/test_repo/robot.py
+    confidence: 0.9
+    sequence:
+    - step: 1
+      action: move_to_position
+      parameters:
+        args:
+        - HOME_POSITION
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:38
+    - step: 2
+      action: open_gripper
+      parameters:
+        args: []
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:41
+    - step: 3
+      action: move_to_position
+      parameters:
+        args:
+        - PICK_POSITION
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:44
+    - step: 4
+      action: close_gripper
+      parameters:
+        args: []
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:47
+    - step: 5
+      action: move_to_position
+      parameters:
+        args:
+        - PLACE_POSITION
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:50
+    - step: 6
+      action: open_gripper
+      parameters:
+        args: []
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:53
+    - step: 7
+      action: move_to_position
+      parameters:
+        args:
+        - HOME_POSITION
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:56
+  manipulation:
+    name: manipulation
+    source: /workspace/project/test_repo/robot.py
+    confidence: 0.7
+    sequence:
+    - step: 1
+      action: move_to_position
+      parameters:
+        args:
+        - HOME_POSITION
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:63
+    - step: 2
+      action: move_to_position
+      parameters:
+        args:
+        - push_start
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:67
+    - step: 3
+      action: move_to_position
+      parameters:
+        args:
+        - push_end
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:75
+    - step: 4
+      action: move_to_position
+      parameters:
+        args:
+        - HOME_POSITION
+        keywords: {}
+      source: /workspace/project/test_repo/robot.py:78
+metadata:
+  analysis_method: multi_source_discovery
+  files_analyzed: 3
+  entry_points_found: 1
+  frameworks_detected: []
+  confidence_overall: 0.754375
+  gaps_identified: []
+  mvp1_ready: true
+  timestamp: '2025-08-03T22:02:07.821004'

@@ -1,0 +1,397 @@
+robot_config:
+  name: gen3_robotiq_2f_85
+  dof: 21
+  confidence: 1.0
+  sources:
+  - /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+  joints:
+  - name: robot0:joint_1
+    type: hinge
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: robot0:joint_2
+    type: hinge
+    limits:
+      lower: -2.41
+      upper: 2.41
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: robot0:joint_3
+    type: hinge
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: robot0:joint_4
+    type: hinge
+    limits:
+      lower: -2.66
+      upper: 2.66
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: robot0:joint_5
+    type: hinge
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: robot0:joint_6
+    type: hinge
+    limits:
+      lower: -2.23
+      upper: 2.23
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: robot0:joint_7
+    type: hinge
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: robot0:gripper_finger1_joint
+    type: hinge
+    limits:
+      lower: 0.0
+      upper: 0.804
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: gripper_finger1_joint2
+    type: hinge
+    limits:
+      lower: 0.0
+      upper: 0.804
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: gripper_finger1_finger_tip_joint
+    type: hinge
+    limits:
+      lower: 0.0
+      upper: 0.804
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: gripper_finger1_inner_knuckle_joint
+    type: hinge
+    limits:
+      lower: 0.0
+      upper: 0.804
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: robot0:gripper_finger2_joint
+    type: hinge
+    limits:
+      lower: 0.0
+      upper: 0.804
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: gripper_finger2_joint2
+    type: hinge
+    limits:
+      lower: 0.0
+      upper: 0.804
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: gripper_finger2_finger_tip_joint
+    type: hinge
+    limits:
+      lower: 0.0
+      upper: 0.804
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: gripper_finger2_inner_knuckle_joint
+    type: hinge
+    limits:
+      lower: 0.0
+      upper: 0.804
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: object0:joint_x
+    type: slide
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: object0:joint_y
+    type: slide
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: object0:joint_z
+    type: slide
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: object0:joint_r
+    type: hinge
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: object0:joint_p
+    type: hinge
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+  - name: object0:joint_yw
+    type: hinge
+    source: /tmp/robotics_repo_analyzer_wekudm4u/.model.xml
+    confidence: 1.0
+discovered_entry_points:
+- file: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py
+  score: 1.0
+  patterns:
+  - (?:Robot|Arm|Manipulator|Controller|Environment|Env)\s*\(
+  - (?:load|load_robot|load_urdf|load_model|from_urdf|from_xml)\s*\(
+  type: python
+named_positions: {}
+tasks:
+  init:
+    name: init
+    source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py
+    confidence: 0.7
+    sequence:
+    - step: 1
+      action: gripper
+      parameters:
+        target: ') def cv2_viewer(self): title = "Camera Output"...'
+        value: '0.18526047'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1035
+    - step: 2
+      action: gripper
+      parameters:
+        target: ) gqtgt = float(self.sim.data.ctrl[self.nv]) se...
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1049
+    - step: 3
+      action: set_velocity
+      parameters:
+        target: 0, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1057
+    - step: 4
+      action: pick_and_place
+      parameters:
+        target: gqtgt
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1060
+    - step: 5
+      action: push
+      parameters:
+        target: gqtgt
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1062
+    - step: 6
+      action: slide
+      parameters:
+        target: gqtgt
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1064
+    - step: 7
+      action: set_velocity
+      parameters:
+        target: twist_ee[0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1099
+    - step: 8
+      action: set_velocity
+      parameters:
+        target: twist_ee[0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1106
+    - step: 9
+      action: set_velocity
+      parameters:
+        target: twist_ee[0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1113
+    - step: 10
+      action: set_velocity
+      parameters:
+        target: twist_ee[0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1120
+    - step: 11
+      action: set_velocity
+      parameters:
+        target: twist_ee[0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1127
+    - step: 12
+      action: set_velocity
+      parameters:
+        target: twist_ee[0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1134
+    - step: 13
+      action: set_velocity
+      parameters:
+        target: 0, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1154
+    - step: 14
+      action: gripper
+      parameters:
+        target: ') #joint self.lock.acquire() vtgt = self.veloci...'
+        value: np.array(self.sim.data.qpos[0:7]
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1162
+    - step: 15
+      action: gripper
+      parameters:
+        target: ) self.show_image(title) cv2.destroyAllWindows(...
+        value: gqtgt
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1167
+    - step: 16
+      action: pick_and_place
+      parameters:
+        target: self
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1172
+    - step: 17
+      action: set_velocity
+      parameters:
+        target: 0.88,0,-0.99,0,0,0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1176
+    - step: 18
+      action: gripper
+      parameters:
+        target: ') time.sleep(0.1) # close gripper while gqtgt <...'
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1183
+    - step: 19
+      action: set_velocity
+      parameters:
+        target: 0,0,0.01,0,0,0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1194
+    - step: 20
+      action: gripper
+      parameters:
+        target: ') time.sleep(0.1) # move down for 1 seconds sel...'
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1202
+    - step: 21
+      action: set_velocity
+      parameters:
+        target: -0.99,0,-0.77,0,0,0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1206
+    - step: 22
+      action: gripper
+      parameters:
+        target: ') time.sleep(0.1) # open gripper while gqtgt >=...'
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1213
+    - step: 23
+      action: set_velocity
+      parameters:
+        target: 0, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1224
+    - step: 24
+      action: gripper
+      parameters:
+        target: ) return gqtgt def push(self
+        value: gqtgt
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1228
+    - step: 25
+      action: push
+      parameters:
+        target: self
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1233
+    - step: 26
+      action: set_velocity
+      parameters:
+        target: 0.45,0,-0.99,0,0,0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1237
+    - step: 27
+      action: gripper
+      parameters:
+        target: ') time.sleep(0.1) # close gripper while gqtgt <...'
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1244
+    - step: 28
+      action: set_velocity
+      parameters:
+        target: 0, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1255
+    - step: 29
+      action: gripper
+      parameters:
+        target: ) time.sleep(0.1) self.twist_ee = np.array([0.99
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1259
+    - step: 30
+      action: set_velocity
+      parameters:
+        target: 0.99, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1262
+    - step: 31
+      action: gripper
+      parameters:
+        target: ) time.sleep(0.01) self.twist_ee = np.array([0
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1269
+    - step: 32
+      action: set_velocity
+      parameters:
+        target: 0, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1272
+    - step: 33
+      action: gripper
+      parameters:
+        target: ) return gqtgt def slide(self
+        value: gqtgt
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1276
+    - step: 34
+      action: slide
+      parameters:
+        target: self
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1279
+    - step: 35
+      action: set_velocity
+      parameters:
+        target: 0.45,0,-0.99,0,0,0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1283
+    - step: 36
+      action: gripper
+      parameters:
+        target: ') time.sleep(0.1) # close gripper while gqtgt <...'
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1290
+    - step: 37
+      action: set_velocity
+      parameters:
+        target: 0, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1301
+    - step: 38
+      action: gripper
+      parameters:
+        target: ) time.sleep(0.1) ang_v = [np.cos(-(15/180*np.pi))
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1305
+    - step: 39
+      action: set_velocity
+      parameters:
+        target: 0.44, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1311
+    - step: 40
+      action: set_velocity
+      parameters:
+        target: self.twist_ee[0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1312
+    - step: 41
+      action: gripper
+      parameters:
+        target: ) time.sleep(0.01) self.twist_ee = np.array([0
+        value: '0'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1319
+    - step: 42
+      action: set_velocity
+      parameters:
+        target: 0, 0, 0, 0, 0, 0
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1322
+    - step: 43
+      action: gripper
+      parameters:
+        target: ) return gqtgt
+        value: ang_v def show_image(self
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1326
+    - step: 44
+      action: gripper
+      parameters:
+        target: ') if len(image_data) != 0: div_near = 1/(znear*...'
+        value: '0.00005'
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1337
+    - step: 45
+      action: gripper
+      parameters:
+        target: ') self.viewer.render() if ct%17 == 1: self.offs...'
+        value: height=240
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1368
+    - step: 46
+      action: gripper
+      parameters:
+        target: )
+      source: /tmp/robotics_repo_analyzer_wekudm4u/grasp_demo.py:1379
+metadata:
+  analysis_method: multi_source_discovery
+  files_analyzed: 56
+  entry_points_found: 1
+  frameworks_detected:
+  - mujoco
+  confidence_overall: 0.61
+  gaps_identified:
+  - joint position parameters
+  mvp1_ready: true
+  timestamp: '2025-08-03T22:04:34.723752'
