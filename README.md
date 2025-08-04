@@ -1,24 +1,17 @@
 # ShiftLeft Task Definition
 
-A production-ready Python application that analyzes messy, real-world robotics Git repositories and extracts robot specifications and task sequences to generate a task.yaml file.
-
-## Features
-
-- **Discovery-First Information Extraction**: Extracts robot specifications from various sources
-- **Multi-Source Information Fusion**: Combines information from multiple sources
-- **Framework-Agnostic Pattern Detection**: Works with MuJoCo, PyBullet, ROS, and more
-- **Task Organization**: Organizes action sequences into meaningful tasks
+A Python application that analyzes messy, real-world robotics Git repositories and extracts robot specifications and task sequences to generate a task.yaml file.
 
 ## Installation
 
 ```bash
-pip install -e .
+pip install requirements.txt
 ```
 
 ## Usage
 
 ```bash
-python -m task_definition.main <repository_url_or_path> --output task.yaml
+python -m task_definition.robotics_repo_analyzer.main <repository_url_or_path> --output <task_yaml_name> --filter-tasks
 ```
 
 ## Examples
