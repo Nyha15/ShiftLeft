@@ -1,0 +1,49 @@
+assets:
+  lay_down_bucket_handle_100452:
+    boundingBox: lay_down_bucket_handle/100452/bounding_box.json
+    handle: lay_down_bucket_handle/100452/handle.yaml
+    jointValue: lay_down_bucket_handle/100452/joint_value.yaml
+    path: lay_down_bucket_handle/100452/mobility.urdf
+    pose: lay_down_bucket_handle/100452/pose.yaml
+  lay_down_bucket_handle_100452_2:
+    boundingBox: lay_down_bucket_handle/100452_2/bounding_box.json
+    handle: lay_down_bucket_handle/100452_2/handle.yaml
+    jointValue: lay_down_bucket_handle/100452_2/joint_value.yaml
+    path: lay_down_bucket_handle/100452_2/mobility.urdf
+    pose: lay_down_bucket_handle/100452_2/pose.yaml
+  lay_down_bucket_handle_100464:
+    boundingBox: lay_down_bucket_handle/100464/bounding_box.json
+    handle: lay_down_bucket_handle/100464/handle.yaml
+    jointValue: lay_down_bucket_handle/100464/joint_value.yaml
+    path: lay_down_bucket_handle/100464/mobility.urdf
+    pose: lay_down_bucket_handle/100464/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_object
+  - grasp_object
+  - lower_vertically
+task_info:
+  category: lifting_manipulation
+  complexity: medium
+  description: Lay a bucket using kinematic-aware manipulation with the Franka Panda
+    robot
+  estimated_duration_seconds: 10.0
+  name: lay_down_bucket_handle
+  object_type: bucket
+validation:
+  success_criteria:
+  - Task completed successfully
+  - No collisions occurred
+  - Robot returns to safe configuration

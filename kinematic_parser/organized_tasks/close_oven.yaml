@@ -1,0 +1,56 @@
+assets:
+  close_oven_7138:
+    boundingBox: close_oven/7138/bounding_box.json
+    handle: close_oven/7138/handle.yaml
+    jointValue: close_oven/7138/joint_value.yaml
+    path: close_oven/7138/mobility.urdf
+    pose: close_oven/7138/pose.yaml
+  close_oven_7179:
+    boundingBox: close_oven/7179/bounding_box.json
+    handle: close_oven/7179/handle.yaml
+    jointValue: close_oven/7179/joint_value.yaml
+    path: close_oven/7179/mobility.urdf
+    pose: close_oven/7179/pose.yaml
+  close_oven_7201:
+    boundingBox: close_oven/7201/bounding_box.json
+    handle: close_oven/7201/handle.yaml
+    jointValue: close_oven/7201/joint_value.yaml
+    path: close_oven/7201/mobility.urdf
+    pose: close_oven/7201/pose.yaml
+  close_oven_7221:
+    boundingBox: close_oven/7221/bounding_box.json
+    handle: close_oven/7221/handle.yaml
+    jointValue: close_oven/7221/joint_value.yaml
+    path: close_oven/7221/mobility.urdf
+    pose: close_oven/7221/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_handle
+  - grasp_handle
+  - push_close
+task_info:
+  category: articulated_manipulation
+  complexity: medium
+  description: Close a oven using kinematic-aware manipulation with the Franka Panda
+    robot
+  estimated_duration_seconds: 10.0
+  name: close_oven
+  object_type: oven
+validation:
+  success_criteria:
+  - Object is successfully closed
+  - Handle is released after closing
+  - No excessive force applied
+  - Final joint angle indicates closed state

@@ -1,0 +1,44 @@
+assets:
+  open_drawer_19179:
+    boundingBox: open_drawer/19179/bounding_box.json
+    handle: open_drawer/19179/handle.yaml
+    jointValue: open_drawer/19179/joint_value.yaml
+    path: open_drawer/19179/mobility.urdf
+    pose: open_drawer/19179/pose.yaml
+  open_drawer_29921:
+    boundingBox: open_drawer/29921/bounding_box.json
+    handle: open_drawer/29921/handle.yaml
+    jointValue: open_drawer/29921/joint_value.yaml
+    path: open_drawer/29921/mobility.urdf
+    pose: open_drawer/29921/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_distance: 0.3
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_handle
+  - grasp_handle
+  - pull_open
+task_info:
+  category: articulated_manipulation
+  complexity: medium
+  description: Open a drawer by grasping the handle and pulling it outward
+  estimated_duration_seconds: 10.0
+  name: open_drawer
+  object_type: drawer
+validation:
+  success_criteria:
+  - Object is successfully opened
+  - Handle is released after opening
+  - No collision with object during execution
+  - Final joint angle indicates open state

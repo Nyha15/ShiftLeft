@@ -1,0 +1,95 @@
+robot_capabilities:
+- 7-DOF manipulation
+- Parallel jaw gripper
+- Force/torque sensing
+- Collision detection
+- Kinematic-aware motion planning
+- Articulated object manipulation
+- GPT-guided task execution
+summary:
+  analysis_date: '2024-01-01'
+  robot_dof: 7
+  robot_name: Franka Panda
+  total_tasks: 45
+task_breakdown:
+  by_category:
+    articulated_manipulation: 27
+    contact_manipulation: 2
+    general_manipulation: 1
+    lifting_manipulation: 9
+    rotational_manipulation: 6
+  by_complexity:
+    complex: 6
+    medium: 29
+    simple: 10
+  by_object_type:
+    bottle: 1
+    bucket: 2
+    button: 2
+    cabinet: 3
+    coffee_machine: 2
+    dishwasher: 2
+    door: 2
+    drawer: 2
+    faucet: 2
+    kitchen_pot: 2
+    laptop: 2
+    microwave: 2
+    oven: 2
+    refrigerator: 2
+    safe: 2
+    stapler: 1
+    suitcase: 2
+    switch: 1
+    toaster: 1
+    toilet: 2
+    trash_can: 2
+    unknown: 2
+    washing_machine: 2
+    window: 2
+task_list:
+- lift_up_kichenpot
+- close_washingmachine
+- close_down_trashcan
+- open_washingmachine
+- open_dishwasher
+- close_laptop
+- turn_bottle_cap
+- open_laptop
+- lift_up_toilet_lid
+- press_stapler
+- open_drawer
+- open_refrigerator
+- close_refrigerator
+- open_suitcase
+- close_microwave
+- lift_strap
+- open_safe
+- close_coffee_machine_lid
+- open_cabinet
+- close_cabinet
+- close_safe
+- lay_down_strap
+- press_button
+- close_kichenpot
+- lift_bucket_handle
+- lift_up_coffee_machine_lid
+- lay_down_bucket_handle
+- lay_down_toilet_lid
+- open_window
+- turn_on_button
+- close_window
+- lift_up_trashcan
+- close_suitcase
+- close_oven
+- close_door
+- close_drawer
+- turn_off_faucet
+- turn_on_switch
+- open_microwave
+- open_oven
+- open_door
+- turn_on_faucet
+- turn_on_toaster
+- close_dishwasher
+- demo_cabinet

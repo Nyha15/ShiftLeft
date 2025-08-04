@@ -1,0 +1,49 @@
+assets:
+  lay_down_toilet_lid_102622:
+    boundingBox: lay_down_toilet_lid/102622/bounding_box.json
+    handle: lay_down_toilet_lid/102622/handle.yaml
+    jointValue: lay_down_toilet_lid/102622/joint_value.yaml
+    path: lay_down_toilet_lid/102622/mobility.urdf
+    pose: lay_down_toilet_lid/102622/pose.yaml
+  lay_down_toilet_lid_102622_link_0:
+    boundingBox: lay_down_toilet_lid/102622_link_0/bounding_box.json
+    handle: lay_down_toilet_lid/102622_link_0/handle.yaml
+    jointValue: lay_down_toilet_lid/102622_link_0/joint_value.yaml
+    path: lay_down_toilet_lid/102622_link_0/mobility.urdf
+    pose: lay_down_toilet_lid/102622_link_0/pose.yaml
+  lay_down_toilet_lid_102703:
+    boundingBox: lay_down_toilet_lid/102703/bounding_box.json
+    handle: lay_down_toilet_lid/102703/handle.yaml
+    jointValue: lay_down_toilet_lid/102703/joint_value.yaml
+    path: lay_down_toilet_lid/102703/mobility.urdf
+    pose: lay_down_toilet_lid/102703/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_object
+  - grasp_object
+  - lower_vertically
+task_info:
+  category: lifting_manipulation
+  complexity: medium
+  description: Lay a toilet using kinematic-aware manipulation with the Franka Panda
+    robot
+  estimated_duration_seconds: 10.0
+  name: lay_down_toilet_lid
+  object_type: toilet
+validation:
+  success_criteria:
+  - Task completed successfully
+  - No collisions occurred
+  - Robot returns to safe configuration

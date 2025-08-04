@@ -1,0 +1,56 @@
+assets:
+  close_refrigerator_10638:
+    boundingBox: close_refrigerator/10638/bounding_box.json
+    handle: close_refrigerator/10638/handle.yaml
+    jointValue: close_refrigerator/10638/joint_value.yaml
+    path: close_refrigerator/10638/mobility.urdf
+    pose: close_refrigerator/10638/pose.yaml
+  close_refrigerator_11178:
+    boundingBox: close_refrigerator/11178/bounding_box.json
+    handle: close_refrigerator/11178/handle.yaml
+    jointValue: close_refrigerator/11178/joint_value.yaml
+    path: close_refrigerator/11178/mobility.urdf
+    pose: close_refrigerator/11178/pose.yaml
+  close_refrigerator_11231:
+    boundingBox: close_refrigerator/11231/bounding_box.json
+    handle: close_refrigerator/11231/handle.yaml
+    jointValue: close_refrigerator/11231/joint_value.yaml
+    path: close_refrigerator/11231/mobility.urdf
+    pose: close_refrigerator/11231/pose.yaml
+  close_refrigerator_12252:
+    boundingBox: close_refrigerator/12252/bounding_box.json
+    handle: close_refrigerator/12252/handle.yaml
+    jointValue: close_refrigerator/12252/joint_value.yaml
+    path: close_refrigerator/12252/mobility.urdf
+    pose: close_refrigerator/12252/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_handle
+  - grasp_handle
+  - push_close
+task_info:
+  category: articulated_manipulation
+  complexity: complex
+  description: Close a refrigerator using kinematic-aware manipulation with the Franka
+    Panda robot
+  estimated_duration_seconds: 20.0
+  name: close_refrigerator
+  object_type: refrigerator
+validation:
+  success_criteria:
+  - Object is successfully closed
+  - Handle is released after closing
+  - No excessive force applied
+  - Final joint angle indicates closed state

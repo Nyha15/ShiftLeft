@@ -1,0 +1,50 @@
+assets:
+  lift_strap_101673:
+    boundingBox: lift_strap/101673/bounding_box.json
+    handle: lift_strap/101673/handle.yaml
+    jointValue: lift_strap/101673/joint_value.yaml
+    path: lift_strap/101673/mobility.urdf
+    pose: lift_strap/101673/pose.yaml
+  lift_strap_101681:
+    boundingBox: lift_strap/101681/bounding_box.json
+    handle: lift_strap/101681/handle.yaml
+    jointValue: lift_strap/101681/joint_value.yaml
+    path: lift_strap/101681/mobility.urdf
+    pose: lift_strap/101681/pose.yaml
+  lift_strap_101681_2:
+    boundingBox: lift_strap/101681_2/bounding_box.json
+    handle: lift_strap/101681_2/handle.yaml
+    jointValue: lift_strap/101681_2/joint_value.yaml
+    path: lift_strap/101681_2/mobility.urdf
+    pose: lift_strap/101681_2/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  - grasp_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    lift_height: 0.2
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_object
+  - interact_with_object
+task_info:
+  category: lifting_manipulation
+  complexity: simple
+  description: Lift a unknown using kinematic-aware manipulation with the Franka Panda
+    robot
+  estimated_duration_seconds: 6.0
+  name: lift_strap
+  object_type: unknown
+validation:
+  success_criteria:
+  - Object is lifted to target height
+  - Object remains stable during lift
+  - Grasp is maintained throughout motion

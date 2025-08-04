@@ -1,0 +1,43 @@
+assets:
+  turn_bottle_cap_3558:
+    boundingBox: turn_bottle_cap/3558/bounding_box.json
+    handle: turn_bottle_cap/3558/handle.yaml
+    jointValue: turn_bottle_cap/3558/joint_value.yaml
+    path: turn_bottle_cap/3558/mobility.urdf
+    pose: turn_bottle_cap/3558/pose.yaml
+  turn_bottle_cap_4043:
+    boundingBox: turn_bottle_cap/4043/bounding_box.json
+    handle: turn_bottle_cap/4043/handle.yaml
+    jointValue: turn_bottle_cap/4043/joint_value.yaml
+    path: turn_bottle_cap/4043/mobility.urdf
+    pose: turn_bottle_cap/4043/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  - force_control
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_object
+  - interact_with_object
+task_info:
+  category: rotational_manipulation
+  complexity: simple
+  description: Turn a bottle using kinematic-aware manipulation with the Franka Panda
+    robot
+  estimated_duration_seconds: 7.5
+  name: turn_bottle_cap
+  object_type: bottle
+validation:
+  success_criteria:
+  - Task completed successfully
+  - No collisions occurred
+  - Robot returns to safe configuration

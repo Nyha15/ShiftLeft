@@ -1,0 +1,50 @@
+assets:
+  close_suitcase_101668:
+    boundingBox: close_suitcase/101668/bounding_box.json
+    handle: close_suitcase/101668/handle.yaml
+    jointValue: close_suitcase/101668/joint_value.yaml
+    path: close_suitcase/101668/mobility.urdf
+    pose: close_suitcase/101668/pose.yaml
+  close_suitcase_101668_2:
+    boundingBox: close_suitcase/101668_2/bounding_box.json
+    handle: close_suitcase/101668_2/handle.yaml
+    jointValue: close_suitcase/101668_2/joint_value.yaml
+    path: close_suitcase/101668_2/mobility.urdf
+    pose: close_suitcase/101668_2/pose.yaml
+  close_suitcase_103755:
+    boundingBox: close_suitcase/103755/bounding_box.json
+    handle: close_suitcase/103755/handle.yaml
+    jointValue: close_suitcase/103755/joint_value.yaml
+    path: close_suitcase/103755/mobility.urdf
+    pose: close_suitcase/103755/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_handle
+  - grasp_handle
+  - push_close
+task_info:
+  category: articulated_manipulation
+  complexity: medium
+  description: Close a suitcase using kinematic-aware manipulation with the Franka
+    Panda robot
+  estimated_duration_seconds: 10.0
+  name: close_suitcase
+  object_type: suitcase
+validation:
+  success_criteria:
+  - Object is successfully closed
+  - Handle is released after closing
+  - No excessive force applied
+  - Final joint angle indicates closed state

@@ -1,0 +1,51 @@
+assets:
+  lift_up_kichenpot_100015:
+    boundingBox: lift_up_kichenpot/100015/bounding_box.json
+    handle: lift_up_kichenpot/100015/handle.yaml
+    jointValue: lift_up_kichenpot/100015/joint_value.yaml
+    path: lift_up_kichenpot/100015/mobility.urdf
+    pose: lift_up_kichenpot/100015/pose.yaml
+  lift_up_kichenpot_100038:
+    boundingBox: lift_up_kichenpot/100038/bounding_box.json
+    handle: lift_up_kichenpot/100038/handle.yaml
+    jointValue: lift_up_kichenpot/100038/joint_value.yaml
+    path: lift_up_kichenpot/100038/mobility.urdf
+    pose: lift_up_kichenpot/100038/pose.yaml
+  lift_up_kichenpot_100040:
+    boundingBox: lift_up_kichenpot/100040/bounding_box.json
+    handle: lift_up_kichenpot/100040/handle.yaml
+    jointValue: lift_up_kichenpot/100040/joint_value.yaml
+    path: lift_up_kichenpot/100040/mobility.urdf
+    pose: lift_up_kichenpot/100040/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  - grasp_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    lift_height: 0.2
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_object
+  - grasp_object
+  - lift_vertically
+task_info:
+  category: lifting_manipulation
+  complexity: medium
+  description: Lift a kitchen pot using kinematic-aware manipulation with the Franka
+    Panda robot
+  estimated_duration_seconds: 12.0
+  name: lift_up_kichenpot
+  object_type: kitchen_pot
+validation:
+  success_criteria:
+  - Object is lifted to target height
+  - Object remains stable during lift
+  - Grasp is maintained throughout motion

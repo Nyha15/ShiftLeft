@@ -1,0 +1,50 @@
+assets:
+  close_down_trashcan_102155_link_2:
+    boundingBox: close_down_trashcan/102155_link_2/bounding_box.json
+    handle: close_down_trashcan/102155_link_2/handle.yaml
+    jointValue: close_down_trashcan/102155_link_2/joint_value.yaml
+    path: close_down_trashcan/102155_link_2/mobility.urdf
+    pose: close_down_trashcan/102155_link_2/pose.yaml
+  close_down_trashcan_102181_link_0:
+    boundingBox: close_down_trashcan/102181_link_0/bounding_box.json
+    handle: close_down_trashcan/102181_link_0/handle.yaml
+    jointValue: close_down_trashcan/102181_link_0/joint_value.yaml
+    path: close_down_trashcan/102181_link_0/mobility.urdf
+    pose: close_down_trashcan/102181_link_0/pose.yaml
+  close_down_trashcan_102209_link_0:
+    boundingBox: close_down_trashcan/102209_link_0/bounding_box.json
+    handle: close_down_trashcan/102209_link_0/handle.yaml
+    jointValue: close_down_trashcan/102209_link_0/joint_value.yaml
+    path: close_down_trashcan/102209_link_0/mobility.urdf
+    pose: close_down_trashcan/102209_link_0/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  parameters:
+    approach_distance: 0.1
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_handle
+  - grasp_handle
+  - push_close
+task_info:
+  category: articulated_manipulation
+  complexity: medium
+  description: Close a trash can using kinematic-aware manipulation with the Franka
+    Panda robot
+  estimated_duration_seconds: 10.0
+  name: close_down_trashcan
+  object_type: trash_can
+validation:
+  success_criteria:
+  - Object is successfully closed
+  - Handle is released after closing
+  - No excessive force applied
+  - Final joint angle indicates closed state

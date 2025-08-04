@@ -1,0 +1,49 @@
+assets:
+  press_button_103482:
+    boundingBox: press_button/103482/bounding_box.json
+    handle: press_button/103482/handle.yaml
+    jointValue: press_button/103482/joint_value.yaml
+    path: press_button/103482/mobility.urdf
+    pose: press_button/103482/pose.yaml
+  press_button_103498:
+    boundingBox: press_button/103498/bounding_box.json
+    handle: press_button/103498/handle.yaml
+    jointValue: press_button/103498/joint_value.yaml
+    path: press_button/103498/mobility.urdf
+    pose: press_button/103498/pose.yaml
+  press_button_103559:
+    boundingBox: press_button/103559/bounding_box.json
+    handle: press_button/103559/handle.yaml
+    jointValue: press_button/103559/joint_value.yaml
+    path: press_button/103559/mobility.urdf
+    pose: press_button/103559/pose.yaml
+execution:
+  dependencies:
+  - robot_initialization
+  - object_detection
+  - motion_planning
+  parameters:
+    approach_distance: 0.1
+    contact_force: 15.0
+    force_threshold: 5.0
+    grasp_force: 10.0
+    movement_speed: 0.1
+    orientation_tolerance: 0.1
+    position_tolerance: 0.01
+    rotation_speed: 0.5
+  required_actions:
+  - approach_target
+  - apply_downward_force
+task_info:
+  category: contact_manipulation
+  complexity: simple
+  description: Press a button using kinematic-aware manipulation with the Franka Panda
+    robot
+  estimated_duration_seconds: 5.0
+  name: press_button
+  object_type: button
+validation:
+  success_criteria:
+  - Button/switch is successfully activated
+  - Appropriate force applied
+  - Hand returns to safe position
