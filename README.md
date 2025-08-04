@@ -1,4 +1,4 @@
-# ShiftLeft Task Definition
+# ShiftLeft
 
 A Python application that analyzes messy, real-world robotics Git repositories and extracts robot specifications and task sequences to generate a task.yaml file.
 
