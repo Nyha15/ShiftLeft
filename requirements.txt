@@ -1,0 +1,23 @@
+# Core dependencies
+numpy>=1.19.0
+pyyaml>=5.1
+gitpython>=3.1.0
+nbformat>=5.0.0
+toml>=0.10.0
+
+# LLM dependencies
+openai>=1.0.0
+anthropic>=0.5.0
+httpx>=0.24.0
+
+# Parsing and analysis
+astroid>=2.4.0
+pylint>=2.5.0
+
+# Utilities
+tqdm>=4.45.0
+colorama>=0.4.3
+
+# Testing
+pytest>=6.0.0
+pytest-cov>=2.10.0

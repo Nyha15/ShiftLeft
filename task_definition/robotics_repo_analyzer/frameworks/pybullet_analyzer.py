@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional
 import xml.etree.ElementTree as ET
 
-from robotics_repo_analyzer.frameworks.base_analyzer import FrameworkAnalyzer
+from task_definition.robotics_repo_analyzer.frameworks.base_analyzer import FrameworkAnalyzer
 
 logger = logging.getLogger(__name__)
 

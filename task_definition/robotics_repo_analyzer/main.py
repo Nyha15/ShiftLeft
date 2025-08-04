@@ -11,14 +11,15 @@ import argparse
 import logging
 import os
 import sys
+import stat
 from pathlib import Path
 import tempfile
 import shutil
 import git
 
-from robotics_repo_analyzer.scanner import RepositoryScanner
-from robotics_repo_analyzer.fusion import InformationFusion
-from robotics_repo_analyzer.output import OutputGenerator
+from task_definition.robotics_repo_analyzer.scanner import RepositoryScanner
+from task_definition.robotics_repo_analyzer.fusion import InformationFusion
+from task_definition.robotics_repo_analyzer.output import OutputGenerator
 
 # Configure logging
 logging.basicConfig(
@@ -48,7 +49,7 @@ def parse_args():
         action='store_true',
         help='Enable verbose output'
     )
-    
+
     # Add LLM-related arguments
     parser.add_argument(
         '--use-llm',
@@ -75,8 +76,38 @@ def parse_args():
         default=0.7,
         help='Complexity threshold for LLM analysis (0.0-1.0)'
     )
-    
+    # Add the filter-tasks argument
+    parser.add_argument(
+        '--filter-tasks',
+        action='store_true',
+        help='Filter tasks using LLM to identify genuine robotics tasks'
+    )
+
     return parser.parse_args()
+
+def robust_rmtree(path):
+    """Robust directory removal that handles Windows permission issues."""
+    def handle_remove_readonly(func, path, exc):
+        """Handle read-only files on Windows."""
+        if os.path.exists(path):
+            os.chmod(path, stat.S_IWRITE)
+            func(path)
+    
+    try:
+        shutil.rmtree(path, onerror=handle_remove_readonly)
+    except Exception as e:
+        logger.warning(f"Failed to remove directory {path}: {e}")
+        # Try alternative cleanup methods for Windows
+        if os.name == 'nt':  # Windows
+            try:
+                import subprocess
+                subprocess.run(['rmdir', '/s', '/q', path], shell=True, check=False)
+                logger.debug(f"Used Windows rmdir command for cleanup")
+            except Exception as e2:
+                logger.warning(f"Windows rmdir also failed: {e2}")
+                logger.warning(f"Temporary directory may not be fully cleaned: {path}")
+        else:
+            logger.warning(f"Temporary directory may not be fully cleaned: {path}")
 
 def clone_repository(repo_url):
     """Clone a Git repository to a temporary directory."""
@@ -88,28 +119,29 @@ def clone_repository(repo_url):
         return temp_dir
     except git.GitCommandError as e:
         logger.error(f"Failed to clone repository: {e}")
-        shutil.rmtree(temp_dir)
+        robust_rmtree(temp_dir)
         sys.exit(1)
 
 def main():
     """Main entry point for the Robotics Repository Analyzer."""
     args = parse_args()
-    
+
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
-    
+
     # Initialize LLM client if requested
     llm_client = None
-    if args.use_llm:
+    if args.use_llm or args.filter_tasks:  # Modified to include filter-tasks
         logger.info("Initializing LLM client...")
         if args.llm_provider == 'local':
-            from robotics_repo_analyzer.llm.llama_client import LlamaClient
+            from task_definition.robotics_repo_analyzer.llm.llama_client import LlamaClient
             llm_client = LlamaClient(model_path=args.llm_model)
             if not llm_client.available:
                 logger.warning("Local Llama model not available. Continuing without LLM.")
                 llm_client = None
+                args.filter_tasks = False  # Disable task filtering if LLM client is not available
         else:
-            from robotics_repo_analyzer.llm.client import LLMClient
+            from task_definition.robotics_repo_analyzer.llm.client import LLMClient
             llm_client = LLMClient(
                 provider=args.llm_provider,
                 api_key=args.llm_api_key,
@@ -118,49 +150,64 @@ def main():
             if not llm_client.available:
                 logger.warning(f"{args.llm_provider} client not available. Continuing without LLM.")
                 llm_client = None
-    
+                args.filter_tasks = False  # Disable task filtering if LLM client is not available
+
+    # Initialize LLM task filter if requested
+    llm_task_filter = None
+    if args.filter_tasks and llm_client:
+        from task_definition.robotics_repo_analyzer.llm.task_filter import LLMTaskFilter
+        llm_task_filter = LLMTaskFilter(llm_client)
+        logger.info("LLM task filtering enabled")
+
     # Determine if the repository is a URL or local path
     repo_path = args.repository
     temp_dir = None
-    
+
     if repo_path.startswith(('http://', 'https://', 'git@')):
         temp_dir = clone_repository(repo_path)
         repo_path = temp_dir
     elif not os.path.isdir(repo_path):
         logger.error(f"Repository path does not exist: {repo_path}")
         sys.exit(1)
-    
+
     try:
         # Scan the repository
         logger.info(f"Analyzing repository: {repo_path}")
         scanner = RepositoryScanner(
-            repo_path, 
+            repo_path,
             use_llm=args.use_llm,
             llm_client=llm_client,
             complexity_threshold=args.complexity_threshold
         )
         scan_results = scanner.scan()
-        
+
+        # Filter tasks if requested
+        if llm_task_filter and 'tasks' in scan_results and 'tasks' in scan_results['tasks']:
+            logger.info("Filtering tasks using LLM...")
+            scan_results['tasks']['tasks'] = llm_task_filter.filter_tasks(scan_results['tasks']['tasks'])
+            # Add LLM client to scan results to indicate LLM was used
+            scan_results['llm_client'] = True
+
         # Fuse information from multiple sources
         fusion = InformationFusion(scan_results)
         fused_data = fusion.fuse()
-        
+
         # Add LLM usage information if used
-        if args.use_llm and llm_client:
+        if (args.use_llm or args.filter_tasks) and llm_client:
             fused_data['llm_used'] = True
             fused_data['llm_stats'] = llm_client.get_usage_stats()
         else:
             fused_data['llm_used'] = False
-        
+
         # Generate output
         output_generator = OutputGenerator(fused_data)
         output_path = Path(args.output)
         output_generator.generate(output_path)
-        
+
         logger.info(f"Analysis complete. Output written to: {output_path}")
-        
+
         # Print LLM usage stats if used
-        if args.use_llm and llm_client:
+        if (args.use_llm or args.filter_tasks) and llm_client:
             stats = llm_client.get_usage_stats()
             logger.info(f"LLM Usage: {stats['request_count']} requests")
             if 'total_tokens' in stats:
@@ -171,7 +218,7 @@ def main():
         # Clean up temporary directory if created
         if temp_dir and os.path.exists(temp_dir):
             logger.debug(f"Cleaning up temporary directory: {temp_dir}")
-            shutil.rmtree(temp_dir)
+            robust_rmtree(temp_dir)
 
 if __name__ == "__main__":
     main()

@@ -11,8 +11,8 @@ from pathlib import Path
 from typing import Dict, List, Any, Set, Tuple
 import nbformat
 
-from robotics_repo_analyzer.analyzers.code_analyzer import analyze_python_file
-from robotics_repo_analyzer.utils.confidence import calculate_confidence
+from task_definition.robotics_repo_analyzer.analyzers.code_analyzer import analyze_python_file
+from task_definition.robotics_repo_analyzer.utils.confidence import calculate_confidence
 
 logger = logging.getLogger(__name__)
 

@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 
-from robotics_repo_analyzer.llm.prompts import (
+from task_definition.robotics_repo_analyzer.llm.prompts import (
     FUNCTION_ANALYSIS_PROMPT,
     CLASS_ANALYSIS_PROMPT,
     FILE_ANALYSIS_PROMPT

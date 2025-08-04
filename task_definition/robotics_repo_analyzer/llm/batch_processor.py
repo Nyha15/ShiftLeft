@@ -8,7 +8,7 @@ import json
 import hashlib
 from typing import Dict, List, Any, Optional
 
-from robotics_repo_analyzer.llm.prompts import BATCH_ANALYSIS_PROMPT
+from task_definition.robotics_repo_analyzer.llm.prompts import BATCH_ANALYSIS_PROMPT
 
 logger = logging.getLogger(__name__)
 

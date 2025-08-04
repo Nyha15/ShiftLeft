@@ -11,11 +11,11 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from typing import Dict, List, Set, Tuple, Any
 
-from robotics_repo_analyzer.detectors.robot_config import RobotConfigDetector
-from robotics_repo_analyzer.detectors.entry_points import EntryPointDetector
-from robotics_repo_analyzer.detectors.action_sequences import ActionSequenceDetector
-from robotics_repo_analyzer.detectors.parameters import ParameterDetector
-from robotics_repo_analyzer.detectors.task_organizer import TaskOrganizer
+from task_definition.robotics_repo_analyzer.detectors.robot_config import RobotConfigDetector
+from task_definition.robotics_repo_analyzer.detectors.entry_points import EntryPointDetector
+from task_definition.robotics_repo_analyzer.detectors.action_sequences import ActionSequenceDetector
+from task_definition.robotics_repo_analyzer.detectors.parameters import ParameterDetector
+from task_definition.robotics_repo_analyzer.detectors.task_organizer import TaskOrganizer
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +65,7 @@ class RepositoryScanner:
         # Initialize framework analyzers
         self.framework_analyzers = []
         try:
-            from robotics_repo_analyzer.frameworks import (
+            from task_definition.robotics_repo_analyzer.frameworks import (
                 MujocoAnalyzer, PyBulletAnalyzer, ROSAnalyzer
             )
             self.framework_analyzers = [
@@ -324,7 +324,7 @@ class RepositoryScanner:
         }
         
         try:
-            from robotics_repo_analyzer.llm.analyzer import HybridCodeAnalyzer
+            from task_definition.robotics_repo_analyzer.llm.analyzer import HybridCodeAnalyzer
             
             # Initialize hybrid analyzer
             hybrid_analyzer = HybridCodeAnalyzer(

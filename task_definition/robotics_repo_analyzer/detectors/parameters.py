@@ -11,9 +11,9 @@ from pathlib import Path
 from typing import Dict, List, Any, Set, Tuple, Optional
 import numpy as np
 
-from robotics_repo_analyzer.analyzers.code_analyzer import extract_parameters_from_python
-from robotics_repo_analyzer.analyzers.config_analyzer import extract_parameters_from_config
-from robotics_repo_analyzer.utils.confidence import calculate_confidence
+from task_definition.robotics_repo_analyzer.analyzers.code_analyzer import extract_parameters_from_python
+from task_definition.robotics_repo_analyzer.analyzers.config_analyzer import extract_parameters_from_config
+from task_definition.robotics_repo_analyzer.utils.confidence import calculate_confidence
 
 logger = logging.getLogger(__name__)
 

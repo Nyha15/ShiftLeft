@@ -20,6 +20,7 @@ from task_definition.robotics_repo_analyzer.scanner import RepositoryScanner
 from task_definition.robotics_repo_analyzer.fusion import InformationFusion
 from task_definition.robotics_repo_analyzer.output import OutputGenerator
 from task_definition.utils.cleanup import cleanup_temp_dir, cleanup_output_files
+from task_definition.robotics_repo_analyzer.llm.task_filter import LLMTaskFilter
 
 # Configure logging
 logging.basicConfig(
@@ -84,7 +85,12 @@ def parse_args():
         action='store_true',
         help='Clean up temporary files after analysis'
     )
-    
+    parser.add_argument(
+        '--filter-tasks',
+        action='store_true',
+        help='Filter tasks using LLM to identify genuine robotics tasks'
+    )
+
     return parser.parse_args()
 
 def clone_repository(repo_url, target_dir):
@@ -101,39 +107,43 @@ def clone_repository(repo_url, target_dir):
 def main():
     """Main entry point."""
     args = parse_args()
-    
+
     # Set log level
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
-    
+
     # Create output directory if it doesn't exist
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     # Initialize LLM client if needed
     llm_client = None
-    if args.use_llm:
+    if args.use_llm or args.filter_tasks:
         try:
-            if args.llm_provider == 'openai':
-                from task_definition.robotics_repo_analyzer.llm.client import OpenAIClient
-                llm_client = OpenAIClient(api_key=args.llm_api_key, model=args.llm_model)
-            elif args.llm_provider == 'anthropic':
-                from task_definition.robotics_repo_analyzer.llm.client import AnthropicClient
-                llm_client = AnthropicClient(api_key=args.llm_api_key, model=args.llm_model)
-            elif args.llm_provider == 'llama':
-                from task_definition.robotics_repo_analyzer.llm.llama_client import LlamaClient
-                llm_client = LlamaClient(model_path=args.llm_model_path)
-            
+            from task_definition.robotics_repo_analyzer.llm.client import LLMClient
+            llm_client = LLMClient(
+                provider=args.llm_provider,
+                api_key=args.llm_api_key,
+                model=args.llm_model
+            )
+
             logger.info(f"Using LLM provider: {args.llm_provider}, model: {args.llm_model}")
         except ImportError as e:
             logger.error(f"Error initializing LLM client: {e}")
             logger.error(f"Make sure you have installed the required dependencies: pip install -e '.[llm]'")
             args.use_llm = False
-    
+            args.filter_tasks = False
+
+    # Initialize LLM task filter if requested
+    llm_task_filter = None
+    if args.filter_tasks and llm_client:
+        llm_task_filter = LLMTaskFilter(llm_client)
+        logger.info("LLM task filtering enabled")
+
     # Determine if the repository is a URL or local path
     repo_path = args.repository
     temp_dir = None
-    
+
     if repo_path.startswith(('http://', 'https://', 'git://', 'ssh://')):
         # Clone the repository to a temporary directory
         temp_dir = Path(tempfile.mkdtemp(prefix='robotics_repo_analyzer_'))
@@ -141,7 +151,7 @@ def main():
             logger.error("Failed to clone repository. Exiting.")
             sys.exit(1)
         repo_path = temp_dir
-    
+
     try:
         # Scan the repository
         logger.info(f"Scanning repository: {repo_path}")
@@ -152,23 +162,30 @@ def main():
             complexity_threshold=args.complexity_threshold
         )
         scan_results = scanner.scan()
-        
+
+        # Filter tasks if requested
+        if llm_task_filter and 'tasks' in scan_results and 'tasks' in scan_results['tasks']:
+            logger.info("Filtering tasks using LLM...")
+            scan_results['tasks']['tasks'] = llm_task_filter.filter_tasks(scan_results['tasks']['tasks'])
+            # Add LLM client to scan results to indicate LLM was used
+            scan_results['llm_client'] = True
+
         # Fuse information
         logger.info("Fusing information...")
         fusion = InformationFusion(scan_results)
         fused_data = fusion.fuse()
-        
+
         # Generate output
         logger.info(f"Generating output: {output_path}")
         generator = OutputGenerator(fused_data)
         generator.generate(output_path)
-        
+
         logger.info(f"Analysis complete. Output written to: {output_path}")
-        
+
         # Log LLM usage statistics
         if args.use_llm and llm_client:
             logger.info(f"LLM Usage: {llm_client.request_count} requests")
-    
+
     finally:
         # Clean up temporary directory
         if temp_dir and args.cleanup:

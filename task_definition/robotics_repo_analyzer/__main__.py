@@ -3,7 +3,7 @@
 Command-line interface for the Robotics Repository Analyzer.
 """
 
-from robotics_repo_analyzer.main import main
+from task_definition.robotics_repo_analyzer.main import main
 
 if __name__ == "__main__":
     main()
