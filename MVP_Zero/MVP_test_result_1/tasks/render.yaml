@@ -1,0 +1,132 @@
+task_info:
+  name: render
+  type: manipulation
+  description: Render the simulation using GLFW and allow user interaction via mouse.
+  complexity: medium
+  confidence: 0.375
+  source_file: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/panda_mujoco.py
+execution:
+  estimated_duration: 18.3
+  parameters:
+    self:
+      name: self
+      type: unknown
+    output_path:
+      name: output_path
+      type: unknown
+  dependencies:
+    imports: &id002
+    - imageio
+    - Thread
+    - glReadPixels
+    - OpenGL.GL
+    - glfw
+    - mujoco
+    - threading
+    - time
+    - numpy
+    - Kinematics
+    - utils.utils
+    function_calls: &id001
+    - mujoco.mjr_render
+    - glfw.set_mouse_button_callback
+    - writer.close
+    - glfw.make_context_current
+    - render
+    - glfw.poll_events
+    - mujoco.MjrRect
+    - vertically
+    - glfw.swap_buffers
+    - mujoco.MjvOption
+    - imageio.get_writer
+    - scroll_callback
+    - glfw.window_should_close
+    - mujoco.mjv_updateScene
+    - writer.append_data
+    - glfw.terminate
+    - glReadPixels
+    - np.flip
+    - glfw.create_window
+    - glfw.get_framebuffer_size
+    - mujoco.MjrContext
+    - print
+    - time.sleep
+    - mujoco.mjv_moveCamera
+    - glfw.set_scroll_callback
+    - glfw.get_cursor_pos
+    - np.zeros
+    - cursor_position_callback
+    - glfw.set_cursor_pos_callback
+    - mujoco.MjvPerturb
+    - glfw.window_hint
+    - glfw.init
+    - mouse_button_callback
+    external_libraries: &id003
+    - imageio
+    - np
+    - glfw
+    - writer
+    - mujoco
+    - time
+    robotics_libraries: &id004
+    - mujoco
+    - pybullet
+    - numpy
+    file_dependencies: []
+    constants: &id005
+    - MOUSE_BUTTON_LEFT
+    - RELEASE
+    - GLFW
+    - SAMPLES
+    - GL_RGB
+    - PRESS
+    - GL_UNSIGNED_BYTE
+    variables: &id006
+    - height
+    - run
+    - viewport
+    - fps
+    - width
+    - action
+    - opt
+    - h
+    - buffer
+    - dtype
+    - writer
+    - last_x
+    - context
+    - dy
+    - button
+    - is_dragging
+    - window
+    - pert
+    - dx
+    - output_path
+    - axis
+    - last_y
+  required_actions:
+  - actuate
+  - wait
+  - rotate
+code_analysis:
+  function_calls: *id001
+  imports: *id002
+  external_libraries: *id003
+  robotics_libraries: *id004
+  constants: *id005
+  variables: *id006
+simulation_requirements:
+  physics_engine: MuJoCo
+  robot_models: []
+  environment_files:
+  - scene
+  sensor_requirements:
+  - camera
+  - imu
+assets:
+  source_code: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/panda_mujoco.py
+  related_configs: []
+metadata:
+  analysis_time: '2025-08-05T16:18:18.512979'
+  analyzer_version: 1.0.0
+  repository_path: unknown

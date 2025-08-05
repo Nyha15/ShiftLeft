@@ -1,0 +1,121 @@
+task_info:
+  name: move_sim_rob
+  type: control
+  description: "Simulates robot motion to a desired position and orientation in the\
+    \ background simulation.\n        Args:\n            robot (str): The robot identifier\
+    \ (e.g., 'panda1' or 'panda2').\n            y_pos_d (np.array): Desired position.\n\
+    \            y_quat_d (np.array): Desired orientation (quaternion).\n        \
+    \    length (float): Duration of the motion.\n        Returns:\n            bool:\
+    \ True if the motion was successfully completed, False otherwise."
+  complexity: medium
+  confidence: 0.875
+  source_file: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/utils/utils.py
+execution:
+  estimated_duration: 10.3
+  parameters:
+    self:
+      name: self
+      type: unknown
+    robot:
+      name: robot
+      type: unknown
+    y_pos_d:
+      name: y_pos_d
+      type: unknown
+    y_quat_d:
+      name: y_quat_d
+      type: unknown
+    length:
+      name: length
+      type: unknown
+  dependencies:
+    imports: &id002
+    - mujoco
+    - time
+    - numpy
+    function_calls: &id001
+    - mujoco.mj_jacBody
+    - self.sim_data.qpos.copy
+    - robot
+    - self.sim_data.actuator
+    - y_pos_d
+    - mujoco.mj_name2id
+    - length
+    - move_sim_rob
+    - y_quat_d
+    - self.sim_data.body
+    - Kinematics.subQuat
+    - range
+    - y_rot_delta.reshape
+    - xpos.copy
+    - time.sleep
+    - reshape
+    - identifier
+    - np.linalg.norm
+    - orientation
+    - Kinematics.inv_kin
+    - mujoco.mj_step
+    - np.vstack
+    - xquat.copy
+    - np.zeros
+    external_libraries: &id003
+    - self
+    - np
+    - xpos
+    - xquat
+    - mujoco
+    - time
+    - Kinematics
+    - y_rot_delta
+    robotics_libraries: &id004
+    - mujoco
+    - pybullet
+    - numpy
+    file_dependencies: []
+    constants: &id005 []
+    variables: &id006
+    - jacp
+    - robot
+    - y_rot_dot_d
+    - y_rot_delta
+    - y_pos_0
+    - bodyid
+    - y_pos_dot_d
+    - x
+    - ord
+    - q_d
+    - y_quat_0
+    - dt
+    - y_dot_d
+    - ctrl
+    - jacr
+    - step_lenght
+    - num_step
+    - jac
+    - q_0
+  required_actions:
+  - wait
+  - verify
+  - compute
+  - rotate
+code_analysis:
+  function_calls: *id001
+  imports: *id002
+  external_libraries: *id003
+  robotics_libraries: *id004
+  constants: *id005
+  variables: *id006
+simulation_requirements:
+  physics_engine: MuJoCo
+  robot_models:
+  - PANDA
+  environment_files: []
+  sensor_requirements:
+  - imu
+assets:
+  source_code: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/utils/utils.py
+  related_configs: []
+metadata:
+  analysis_time: '2025-08-05T16:18:18.517794'
+  analyzer_version: 1.0.0
+  repository_path: unknown

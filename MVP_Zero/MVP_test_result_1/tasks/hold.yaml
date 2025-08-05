@@ -1,0 +1,85 @@
+task_info:
+  name: hold
+  type: grasping
+  description: "Hold the robot in its current position for a specified duration.\n\
+    \        Args:\n            robot (str): Identifier for the robot (e.g., 'panda1'\
+    \ or 'panda2').\n            length (float): Duration to hold the position in\
+    \ seconds."
+  complexity: medium
+  confidence: 0.375
+  source_file: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/panda_mujoco.py
+execution:
+  estimated_duration: 11.6
+  parameters:
+    self:
+      name: self
+      type: unknown
+    robot:
+      name: robot
+      type: unknown
+    length:
+      name: length
+      type: unknown
+  dependencies:
+    imports: &id002
+    - imageio
+    - Thread
+    - glReadPixels
+    - OpenGL.GL
+    - glfw
+    - mujoco
+    - threading
+    - time
+    - numpy
+    - Kinematics
+    - utils.utils
+    function_calls: &id001
+    - mujoco.mj_step
+    - length
+    - range
+    - print
+    - robot
+    - self.data.qpos.copy
+    - self.data.actuator
+    - time.sleep
+    - hold
+    external_libraries: &id003
+    - mujoco
+    - self
+    - time
+    robotics_libraries: &id004
+    - mujoco
+    - pybullet
+    - numpy
+    file_dependencies: []
+    constants: &id005 []
+    variables: &id006
+    - step_lenght
+    - robot
+    - num_step
+    - ctrl
+    - q_0
+  required_actions:
+  - verify
+  - wait
+code_analysis:
+  function_calls: *id001
+  imports: *id002
+  external_libraries: *id003
+  robotics_libraries: *id004
+  constants: *id005
+  variables: *id006
+simulation_requirements:
+  physics_engine: MuJoCo
+  robot_models:
+  - PANDA
+  environment_files: []
+  sensor_requirements:
+  - camera
+assets:
+  source_code: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/panda_mujoco.py
+  related_configs: []
+metadata:
+  analysis_time: '2025-08-05T16:18:18.509093'
+  analyzer_version: 1.0.0
+  repository_path: unknown

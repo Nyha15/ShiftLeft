@@ -1,0 +1,98 @@
+task_info:
+  name: step
+  type: manipulation
+  description: "Performs a single operational step for both robots ('panda1' and 'panda2').\n\
+    \        The function includes logic for path planning, object manipulation, and\
+    \ returning to a home position."
+  complexity: complex
+  confidence: 0.625
+  source_file: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/rrt_pick_place.py
+execution:
+  estimated_duration: 24.8
+  parameters:
+    self:
+      name: self
+      type: unknown
+  dependencies:
+    imports: &id002
+    - Thread
+    - panda_mujoco
+    - RRT
+    - threading
+    - numpy
+    - ControlRobot
+    - utils.utils
+    function_calls: &id001
+    - np.array
+    - path1.append
+    - robots
+    - self.data.body
+    - print
+    - object
+    - xpos.copy
+    - self.gripper
+    - step
+    - path2.append
+    - xquat.copy
+    - self.hold
+    - RRT.path_plan
+    - self.follow_path
+    external_libraries: &id003
+    - self
+    - np
+    - xpos
+    - path1
+    - xquat
+    - RRT
+    - path2
+    robotics_libraries: &id004
+    - pybullet
+    - numpy
+    file_dependencies: []
+    constants: &id005
+    - RRT
+    variables: &id006
+    - y_pos_box1
+    - end_point
+    - robot
+    - y_pos_box
+    - target_occupied
+    - y_pos_0_2
+    - y_quat_d_2
+    - y_pos_0_1
+    - y_quat_d_1
+    - y_pos_0
+    - y_quat_d
+    - reversed_path1
+    - y_quat_0_2
+    - duration
+    - y_pos_box2
+    - reversed_path2
+    - path1
+    - open
+    - y_quat_0_1
+    - path2
+  required_actions:
+  - actuate
+  - move
+  - rotate
+code_analysis:
+  function_calls: *id001
+  imports: *id002
+  external_libraries: *id003
+  robotics_libraries: *id004
+  constants: *id005
+  variables: *id006
+simulation_requirements:
+  physics_engine: MuJoCo
+  robot_models:
+  - PANDA
+  environment_files: []
+  sensor_requirements: []
+assets:
+  source_code: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/rrt_pick_place.py
+  related_configs: []
+metadata:
+  analysis_time: '2025-08-05T16:18:18.495886'
+  analyzer_version: 1.0.0
+  repository_path: unknown

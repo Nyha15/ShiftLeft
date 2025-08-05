@@ -1,0 +1,19 @@
+capabilities:
+- End effector manipulation
+kinematics:
+  joints: []
+  links:
+  - collision_geometry: null
+    inertial: null
+    name: box
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: mocap_target
+    visual_geometry: null
+robot_info:
+  base_link: box
+  dof: 0
+  end_effector: mocap_target
+  name: mjx_single_cube
+  urdf_path: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/simulation_env/mjx_single_cube.xml

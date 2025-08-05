@@ -1,0 +1,55 @@
+capabilities:
+- End effector manipulation
+kinematics:
+  joints:
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: floating
+    limits: null
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: box1
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: floating
+    limits: null
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: box2
+    safety_limits: null
+  links:
+  - collision_geometry: null
+    inertial: null
+    name: box1
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: box2
+    visual_geometry: null
+robot_info:
+  base_link: box1
+  dof: 0
+  end_effector: box2
+  name: world(box)
+  urdf_path: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/simulation_env/world(box).xml

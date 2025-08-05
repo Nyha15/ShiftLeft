@@ -1,0 +1,331 @@
+capabilities:
+- 14-DOF manipulation
+- Redundant kinematics
+- End effector manipulation
+- Rotational joints
+- Linear joints
+kinematics:
+  joints:
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: revolute
+    limits:
+      effort: 100.0
+      lower: -2.8973
+      upper: 2.8973
+      velocity: 10.0
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 1.0
+    - 0.0
+    child_link: unnamed_joint_child
+    joint_type: prismatic
+    limits:
+      effort: 100.0
+      lower: 0.0
+      upper: 0.04
+      velocity: 10.0
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: joint1_2_child
+    joint_type: revolute
+    limits: null
+    name: joint1_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: link1_2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: joint2_2_child
+    joint_type: revolute
+    limits:
+      effort: 100.0
+      lower: -1.7628
+      upper: 1.7628
+      velocity: 10.0
+    name: joint2_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: link2_2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: joint3_2_child
+    joint_type: revolute
+    limits: null
+    name: joint3_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: link3_2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: joint4_2_child
+    joint_type: revolute
+    limits:
+      effort: 100.0
+      lower: -3.0718
+      upper: -0.0698
+      velocity: 10.0
+    name: joint4_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: link4_2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: joint5_2_child
+    joint_type: revolute
+    limits: null
+    name: joint5_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: link5_2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: joint6_2_child
+    joint_type: revolute
+    limits:
+      effort: 100.0
+      lower: -0.0175
+      upper: 3.7525
+      velocity: 10.0
+    name: joint6_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: link6_2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: joint7_2_child
+    joint_type: revolute
+    limits: null
+    name: joint7_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: link7_2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: finger_joint1_2_child
+    joint_type: revolute
+    limits: null
+    name: finger_joint1_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: left_finger2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: finger_joint2_2_child
+    joint_type: revolute
+    limits: null
+    name: finger_joint2_2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: right_finger2
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: revolute
+    limits: null
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: revolute
+    limits: null
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: revolute
+    limits: null
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  links:
+  - collision_geometry: null
+    inertial: null
+    name: link0_2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: link1_2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: link2_2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: link3_2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: link4_2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: link5_2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: link6_2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: link7_2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: hand2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: left_finger2
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: right_finger2
+    visual_geometry: null
+robot_info:
+  base_link: link0_2
+  dof: 14
+  end_effector: right_finger2
+  name: panda2
+  urdf_path: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/simulation_env/panda2.xml

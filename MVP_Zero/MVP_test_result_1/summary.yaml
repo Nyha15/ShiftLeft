@@ -1,0 +1,72 @@
+file_analysis:
+  total_config_files: 11
+  total_python_files: 7
+  total_urdf_files: 9
+metadata:
+  analysis_time: '2025-08-05T16:18:18.495167'
+  analyzer_version: 1.0.0
+  confidence: 0.7757142857142858
+  repository_path: /home/abhishek/llm_robot/test_repo
+robot_capabilities:
+- End effector manipulation
+- End effector manipulation
+- Rotational joints
+- 14-DOF manipulation
+- Redundant kinematics
+- End effector manipulation
+- Rotational joints
+- Linear joints
+- 9-DOF manipulation
+- Redundant kinematics
+- End effector manipulation
+- Rotational joints
+- Linear joints
+- End effector manipulation
+- Rotational joints
+- 7-DOF manipulation
+- Redundant kinematics
+- Multi-finger manipulation
+- Rotational joints
+- Linear joints
+- 12-DOF manipulation
+- Redundant kinematics
+- Multi-finger manipulation
+- Rotational joints
+- Linear joints
+- End effector manipulation
+- 14-DOF manipulation
+- Redundant kinematics
+- End effector manipulation
+- Rotational joints
+- Linear joints
+summary:
+  avg_task_complexity: medium
+  robot_names:
+  - world(box)
+  - cable
+  - panda1
+  - panda_nohand
+  - world(cable)
+  - hand
+  - mjx_panda
+  - mjx_single_cube
+  - panda2
+  task_types: &id001
+    control: 2
+    grasping: 1
+    manipulation: 3
+    navigation: 1
+  total_config_files: 11
+  total_dof: 58
+  total_robots: 9
+  total_tasks: 7
+task_breakdown:
+  by_complexity:
+    complex: 1
+    medium: 6
+    simple: 0
+  by_confidence:
+    high: 2
+    low: 2
+    medium: 3
+  by_type: *id001

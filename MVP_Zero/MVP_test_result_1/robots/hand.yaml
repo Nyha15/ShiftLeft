@@ -1,0 +1,161 @@
+capabilities:
+- 7-DOF manipulation
+- Redundant kinematics
+- Multi-finger manipulation
+- Rotational joints
+- Linear joints
+kinematics:
+  joints:
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: revolute
+    limits:
+      effort: 100.0
+      lower: -2.8973
+      upper: 2.8973
+      velocity: 10.0
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 1.0
+    - 0.0
+    child_link: unnamed_joint_child
+    joint_type: prismatic
+    limits:
+      effort: 100.0
+      lower: 0.0
+      upper: 0.04
+      velocity: 10.0
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: finger_joint1_child
+    joint_type: revolute
+    limits: null
+    name: finger_joint1
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: left_finger
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: finger_joint2_child
+    joint_type: revolute
+    limits: null
+    name: finger_joint2
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: right_finger
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: revolute
+    limits: null
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: revolute
+    limits: null
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  - axis:
+    - 0.0
+    - 0.0
+    - 1.0
+    child_link: unnamed_joint_child
+    joint_type: revolute
+    limits: null
+    name: unnamed_joint
+    origin:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 1
+    parent_link: unknown
+    safety_limits: null
+  links:
+  - collision_geometry: null
+    inertial: null
+    name: hand
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: left_finger
+    visual_geometry: null
+  - collision_geometry: null
+    inertial: null
+    name: right_finger
+    visual_geometry: null
+robot_info:
+  base_link: hand
+  dof: 7
+  end_effector: hand
+  name: hand
+  urdf_path: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/simulation_env/hand.xml

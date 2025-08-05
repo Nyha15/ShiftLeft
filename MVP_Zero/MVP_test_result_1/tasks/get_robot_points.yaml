@@ -1,0 +1,79 @@
+task_info:
+  name: get_robot_points
+  type: control
+  description: "Retrieves interpolated points along the robot's structure for collision\
+    \ checking.\n        Args:\n            robot_name (str): Name of the robot (e.g.,\
+    \ 'panda1').\n        Returns:\n            list: A list of 3D points representing\
+    \ the robot's structure."
+  complexity: medium
+  confidence: 0.5
+  source_file: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/utils/utils.py
+execution:
+  estimated_duration: 14.7
+  parameters:
+    self:
+      name: self
+      type: unknown
+    robot_name:
+      name: robot_name
+      type: unknown
+  dependencies:
+    imports: &id002
+    - mujoco
+    - time
+    - numpy
+    function_calls: &id001
+    - site_positions.append
+    - mujoco.mj_name2id
+    - range
+    - get_robot_points
+    - robot
+    - robot_name
+    - self.sim_data.site
+    - np.linspace
+    - len
+    - points.append
+    external_libraries: &id003
+    - site_positions
+    - self
+    - np
+    - points
+    - mujoco
+    robotics_libraries: &id004
+    - mujoco
+    - pybullet
+    - numpy
+    file_dependencies: []
+    constants: &id005 []
+    variables: &id006
+    - site_positions
+    - points
+    - end
+    - i
+    - start
+    - site_id
+    - interpolated_point
+    - site_position
+  required_actions:
+  - verify
+  - rotate
+code_analysis:
+  function_calls: *id001
+  imports: *id002
+  external_libraries: *id003
+  robotics_libraries: *id004
+  constants: *id005
+  variables: *id006
+simulation_requirements:
+  physics_engine: MuJoCo
+  robot_models:
+  - PANDA
+  environment_files: []
+  sensor_requirements: []
+assets:
+  source_code: /home/abhishek/llm_robot/test_repo/Robot-Pick-and-Place-Simulation/utils/utils.py
+  related_configs: []
+metadata:
+  analysis_time: '2025-08-05T16:18:18.522733'
+  analyzer_version: 1.0.0
+  repository_path: unknown
