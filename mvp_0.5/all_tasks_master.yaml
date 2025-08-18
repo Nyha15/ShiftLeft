@@ -1,0 +1,258 @@
+repository_analysis:
+  total_tasks: 4
+  analysis_timestamp: '2025-08-17T22:55:56.217097'
+  format_version: '1.0'
+tasks:
+- task_name: ArtificialPotentialFields3D
+  semantic_description: Manages ArtificialPotentialFields3D operations
+  parameters:
+  - variable_name: start
+    current_value: 10.0
+    range:
+    - 5.0
+    - 20.0
+    unit: unitless
+    description: Constructor parameter start
+    source: constructor
+  - variable_name: goal
+    current_value: 100.0
+    range:
+    - 50.0
+    - 200.0
+    unit: unitless
+    description: Constructor parameter goal
+    source: constructor
+  - variable_name: obstacle_center
+    current_value: 4.0
+    range:
+    - 2.0
+    - 8.0
+    unit: unitless
+    description: Constructor parameter obstacle_center
+    source: constructor
+  - variable_name: obstacle_radius
+    current_value: 0.01
+    range:
+    - 0.008
+    - 0.015
+    unit: m
+    description: Constructor parameter obstacle_radius
+    source: constructor
+  - variable_name: alpha
+    current_value: 10000.0
+    range:
+    - 5000.0
+    - 20000.0
+    unit: unitless
+    description: Constructor parameter alpha
+    source: constructor
+  - variable_name: beta
+    current_value: 1.0e-05
+    range:
+    - 5.0e-06
+    - 2.0e-05
+    unit: unitless
+    description: Constructor parameter beta
+    source: constructor
+  - variable_name: rho_0
+    current_value: 0.0
+    range:
+    - 0.0
+    - 0.0
+    unit: m
+    description: Constructor parameter rho_0
+    source: constructor
+  - variable_name: step_size
+    current_value: 0.0
+    range:
+    - 0.0
+    - 0.0
+    unit: rad
+    description: Constructor parameter step_size
+    source: constructor
+  - variable_name: max_iters
+    current_value: 0.0
+    range:
+    - 0.0
+    - 0.0
+    unit: m
+    description: Constructor parameter max_iters
+    source: constructor
+  - variable_name: resolution
+    current_value: 0.0
+    range:
+    - 0.0
+    - 0.0
+    unit: rad
+    description: Constructor parameter resolution
+    source: constructor
+  kpis:
+  - name: attractive_potential_result
+    data_type: string
+    description: Result from attractive_potential method
+    success_criteria: Method attractive_potential completes successfully
+    monitoring_frequency: on_call
+  - name: repulsive_potential_result
+    data_type: string
+    description: Result from repulsive_potential method
+    success_criteria: Method repulsive_potential completes successfully
+    monitoring_frequency: on_call
+  - name: plan_result
+    data_type: string
+    description: Result from plan method
+    success_criteria: Method plan completes successfully
+    monitoring_frequency: on_call
+  function_names:
+  - __init__
+  - attractive_potential
+  - repulsive_potential
+  - plan
+  file_path: /tmp/repo_analysis_652bbq__/cloned_repo/scripts/APF.py
+  confidence: 0.8
+- task_name: plan
+  semantic_description: Plan the path from start to goal avoiding the obstacle.
+  parameters:
+  - variable_name: start
+    current_value: 3.0
+    range:
+    - 1.5
+    - 6.0
+    unit: unitless
+    description: Global parameter start used by plan
+    source: global
+  - variable_name: goal
+    current_value: 3.0
+    range:
+    - 1.5
+    - 6.0
+    unit: unitless
+    description: Global parameter goal used by plan
+    source: global
+  - variable_name: path
+    current_value: 1.0
+    range:
+    - 0.5
+    - 2.0
+    unit: unitless
+    description: Global parameter path used by plan
+    source: global
+  - variable_name: U_rep
+    current_value: 0.0
+    range:
+    - 0.0
+    - 0.0
+    unit: unitless
+    description: Global parameter U_rep used by plan
+    source: global
+  kpis:
+  - name: position
+    data_type: float
+    description: Current position
+    success_criteria: position indicates successful completion
+    monitoring_frequency: continuous
+  function_names:
+  - plan
+  file_path: /tmp/repo_analysis_652bbq__/cloned_repo/scripts/APF.py
+  confidence: 0.6
+- task_name: simulate_path
+  semantic_description: Simulates the agent's path in MuJoCo.
+  parameters:
+  - variable_name: path
+    current_value: 1.0
+    range:
+    - 0.5
+    - 2.0
+    unit: unitless
+    description: Global parameter path used by simulate_path
+    source: global
+  kpis:
+  - name: position
+    data_type: float
+    description: Current position
+    success_criteria: position indicates successful completion
+    monitoring_frequency: continuous
+  - name: time
+    data_type: float
+    description: Execution time
+    success_criteria: time indicates successful completion
+    monitoring_frequency: continuous
+  function_names:
+  - simulate_path
+  file_path: /tmp/repo_analysis_652bbq__/cloned_repo/scripts/APF.py
+  confidence: 0.4
+- task_name: main
+  semantic_description: Performs main operation
+  parameters:
+  - variable_name: max_angvel
+    current_value: 0.785
+    range:
+    - 0.3925
+    - 1.57
+    unit: m
+    description: Global parameter max_angvel used by main
+    source: global
+  - variable_name: start
+    current_value: 3.0
+    range:
+    - 1.5
+    - 6.0
+    unit: unitless
+    description: Global parameter start used by main
+    source: global
+  - variable_name: goal
+    current_value: 3.0
+    range:
+    - 1.5
+    - 6.0
+    unit: unitless
+    description: Global parameter goal used by main
+    source: global
+  - variable_name: obstacle_center
+    current_value: 3.0
+    range:
+    - 1.5
+    - 6.0
+    unit: unitless
+    description: Global parameter obstacle_center used by main
+    source: global
+  - variable_name: obstacle_radius
+    current_value: 0.08
+    range:
+    - 0.064
+    - 0.12
+    unit: m
+    description: Global parameter obstacle_radius used by main
+    source: global
+  - variable_name: joint_names
+    current_value: 7.0
+    range:
+    - 3.5
+    - 14.0
+    unit: unitless
+    description: Global parameter joint_names used by main
+    source: global
+  kpis:
+  - name: error
+    data_type: string
+    description: Error message if task fails
+    success_criteria: error indicates successful completion
+    monitoring_frequency: continuous
+  - name: position
+    data_type: float
+    description: Current position
+    success_criteria: position indicates successful completion
+    monitoring_frequency: continuous
+  - name: velocity
+    data_type: float
+    description: Current velocity
+    success_criteria: velocity indicates successful completion
+    monitoring_frequency: continuous
+  - name: time
+    data_type: float
+    description: Execution time
+    success_criteria: time indicates successful completion
+    monitoring_frequency: continuous
+  function_names:
+  - main
+  file_path: /tmp/repo_analysis_652bbq__/cloned_repo/scripts/Franka_Emika_Panda_Control.py
+  confidence: 0.3

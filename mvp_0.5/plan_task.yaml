@@ -1,0 +1,41 @@
+task_name: plan
+semantic_description: Plan the path from start to goal avoiding the obstacle.
+parameters:
+- variable_name: start
+  current_value: 3.0
+  range_min: 1.5
+  range_max: 6.0
+  unit: unitless
+  description: Global parameter start used by plan
+  source: global
+- variable_name: goal
+  current_value: 3.0
+  range_min: 1.5
+  range_max: 6.0
+  unit: unitless
+  description: Global parameter goal used by plan
+  source: global
+- variable_name: path
+  current_value: 1.0
+  range_min: 0.5
+  range_max: 2.0
+  unit: unitless
+  description: Global parameter path used by plan
+  source: global
+- variable_name: U_rep
+  current_value: 0.0
+  range_min: 0.0
+  range_max: 0.0
+  unit: unitless
+  description: Global parameter U_rep used by plan
+  source: global
+kpis:
+- name: position
+  data_type: float
+  description: Current position
+  success_criteria: position indicates successful completion
+  monitoring_frequency: continuous
+function_names:
+- plan
+file_path: /tmp/repo_analysis_652bbq__/cloned_repo/scripts/APF.py
+confidence: 0.6

@@ -1,0 +1,96 @@
+task_name: ArtificialPotentialFields3D
+semantic_description: Manages ArtificialPotentialFields3D operations
+parameters:
+- variable_name: start
+  current_value: 10.0
+  range_min: 5.0
+  range_max: 20.0
+  unit: unitless
+  description: Constructor parameter start
+  source: constructor
+- variable_name: goal
+  current_value: 100.0
+  range_min: 50.0
+  range_max: 200.0
+  unit: unitless
+  description: Constructor parameter goal
+  source: constructor
+- variable_name: obstacle_center
+  current_value: 4.0
+  range_min: 2.0
+  range_max: 8.0
+  unit: unitless
+  description: Constructor parameter obstacle_center
+  source: constructor
+- variable_name: obstacle_radius
+  current_value: 0.01
+  range_min: 0.008
+  range_max: 0.015
+  unit: m
+  description: Constructor parameter obstacle_radius
+  source: constructor
+- variable_name: alpha
+  current_value: 10000.0
+  range_min: 5000.0
+  range_max: 20000.0
+  unit: unitless
+  description: Constructor parameter alpha
+  source: constructor
+- variable_name: beta
+  current_value: 1.0e-05
+  range_min: 5.0e-06
+  range_max: 2.0e-05
+  unit: unitless
+  description: Constructor parameter beta
+  source: constructor
+- variable_name: rho_0
+  current_value: 0.0
+  range_min: 0.0
+  range_max: 0.0
+  unit: m
+  description: Constructor parameter rho_0
+  source: constructor
+- variable_name: step_size
+  current_value: 0.0
+  range_min: 0.0
+  range_max: 0.0
+  unit: rad
+  description: Constructor parameter step_size
+  source: constructor
+- variable_name: max_iters
+  current_value: 0.0
+  range_min: 0.0
+  range_max: 0.0
+  unit: m
+  description: Constructor parameter max_iters
+  source: constructor
+- variable_name: resolution
+  current_value: 0.0
+  range_min: 0.0
+  range_max: 0.0
+  unit: rad
+  description: Constructor parameter resolution
+  source: constructor
+kpis:
+- name: attractive_potential_result
+  data_type: string
+  description: Result from attractive_potential method
+  success_criteria: Method attractive_potential completes successfully
+  monitoring_frequency: on_call
+- name: repulsive_potential_result
+  data_type: string
+  description: Result from repulsive_potential method
+  success_criteria: Method repulsive_potential completes successfully
+  monitoring_frequency: on_call
+- name: plan_result
+  data_type: string
+  description: Result from plan method
+  success_criteria: Method plan completes successfully
+  monitoring_frequency: on_call
+function_names:
+- __init__
+- attractive_potential
+- repulsive_potential
+- plan
+file_path: /tmp/repo_analysis_652bbq__/cloned_repo/scripts/APF.py
+confidence: 0.8

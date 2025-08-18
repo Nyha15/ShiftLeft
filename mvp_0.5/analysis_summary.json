@@ -1,0 +1,46 @@
+{
+  "repository_path": "/tmp/repo_analysis_652bbq__/cloned_repo",
+  "analysis_time": 0.041909,
+  "total_tasks": 4,
+  "overall_confidence": 0.5249999999999999,
+  "generated_files": [
+    "mirmi_final_analysis/artificialpotentialfields3d_task.yaml",
+    "mirmi_final_analysis/plan_task.yaml",
+    "mirmi_final_analysis/simulate_path_task.yaml",
+    "mirmi_final_analysis/main_task.yaml"
+  ],
+  "summary": {
+    "task_categories": {
+      "general": 2,
+      "navigation": 2
+    },
+    "parameter_statistics": {
+      "total_parameters": 21,
+      "average_per_task": 5.25,
+      "by_source": {
+        "constructor": 10,
+        "global": 11
+      }
+    },
+    "kpi_statistics": {
+      "total_kpis": 10,
+      "average_per_task": 2.5,
+      "by_data_type": {
+        "string": 4,
+        "float": 6
+      }
+    },
+    "confidence_distribution": {
+      "high": 1,
+      "medium": 2,
+      "low": 1
+    },
+    "file_coverage": {
+      "total_files": 2,
+      "by_extension": {
+        ".py": 4
+      }
+    }
+  },
+  "analysis_timestamp": "2025-08-17T22:55:56.204294"
+}

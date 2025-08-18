@@ -1,0 +1,70 @@
+task_name: main
+semantic_description: Performs main operation
+parameters:
+- variable_name: max_angvel
+  current_value: 0.785
+  range_min: 0.3925
+  range_max: 1.57
+  unit: m
+  description: Global parameter max_angvel used by main
+  source: global
+- variable_name: start
+  current_value: 3.0
+  range_min: 1.5
+  range_max: 6.0
+  unit: unitless
+  description: Global parameter start used by main
+  source: global
+- variable_name: goal
+  current_value: 3.0
+  range_min: 1.5
+  range_max: 6.0
+  unit: unitless
+  description: Global parameter goal used by main
+  source: global
+- variable_name: obstacle_center
+  current_value: 3.0
+  range_min: 1.5
+  range_max: 6.0
+  unit: unitless
+  description: Global parameter obstacle_center used by main
+  source: global
+- variable_name: obstacle_radius
+  current_value: 0.08
+  range_min: 0.064
+  range_max: 0.12
+  unit: m
+  description: Global parameter obstacle_radius used by main
+  source: global
+- variable_name: joint_names
+  current_value: 7.0
+  range_min: 3.5
+  range_max: 14.0
+  unit: unitless
+  description: Global parameter joint_names used by main
+  source: global
+kpis:
+- name: error
+  data_type: string
+  description: Error message if task fails
+  success_criteria: error indicates successful completion
+  monitoring_frequency: continuous
+- name: position
+  data_type: float
+  description: Current position
+  success_criteria: position indicates successful completion
+  monitoring_frequency: continuous
+- name: velocity
+  data_type: float
+  description: Current velocity
+  success_criteria: velocity indicates successful completion
+  monitoring_frequency: continuous
+- name: time
+  data_type: float
+  description: Execution time
+  success_criteria: time indicates successful completion
+  monitoring_frequency: continuous
+function_names:
+- main
+file_path: /tmp/repo_analysis_652bbq__/cloned_repo/scripts/Franka_Emika_Panda_Control.py
+confidence: 0.3
