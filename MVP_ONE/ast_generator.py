@@ -35,6 +35,7 @@ class ASTGenerator:
         self.logger = logging.getLogger(f"{__name__}.ASTGenerator")
         self.storage_dir = storage_dir or Path("ast_storage")
         self.storage_dir.mkdir(parents=True, exist_ok=True)
+        self.repo_root = None  # Will be set when processing a repository
         
         # Create subdirectories for different storage formats
         (self.storage_dir / "json").mkdir(exist_ok=True)
@@ -44,15 +45,21 @@ class ASTGenerator:
     def generate_repository_ast(self, repo_path: Path) -> Dict[str, Any]:
         """Generate ASTs for all Python files in a repository"""
         repo_path = Path(repo_path).resolve()
+        self.repo_root = repo_path  # Store the repo root for relative paths
         self.logger.info(f"Generating ASTs for repository: {repo_path}")
         
         # Find all Python files
         python_files = list(repo_path.rglob("*.py"))
         self.logger.info(f"Found {len(python_files)} Python files")
         
+        # Store relative path in metadata if possible
+        repo_rel_path = repo_path.name  # Default to just the directory name
+        if hasattr(self, 'repo_root') and str(repo_path).startswith(str(self.repo_root)):
+            repo_rel_path = str(Path(repo_path).relative_to(self.repo_root))
+            
         repository_ast = {
             'metadata': {
-                'repo_path': str(repo_path),
+                'repo_path': repo_rel_path,
                 'generated_at': datetime.now().isoformat(),
                 'total_files': len(python_files),
                 'generator_version': '1.0.0'
@@ -96,8 +103,11 @@ class ASTGenerator:
             # Convert to serializable format
             serializable_ast = self._ast_to_dict(tree)
             
+            # Store relative path from the repository root instead of absolute path
+            rel_path = file_path.relative_to(Path(self.repo_root)) if hasattr(self, 'repo_root') else file_path.name
+            
             return {
-                'file_path': str(file_path),
+                'file_path': str(rel_path),
                 'file_size': len(content),
                 'line_count': len(content.split('\n')),
                 'content_hash': hashlib.md5(content.encode()).hexdigest(),

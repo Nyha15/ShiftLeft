@@ -1,0 +1,15 @@
+{
+  "repo_name": "franka_control",
+  "generated_at": "2025-08-18T17:26:39.426144",
+  "repo_path": ".",
+  "total_files": 2,
+  "successful_parses": 2,
+  "failed_parses": 0,
+  "success_rate": 1.0,
+  "json_file": "ast_storage\\json\\franka_control_20250818_172639.json",
+  "pickle_file": "ast_storage\\pickle\\franka_control_20250818_172639.pkl",
+  "file_list": [
+    "scripts\\APF.py",
+    "scripts\\Franka_Emika_Panda_Control.py"
+  ]
+}
